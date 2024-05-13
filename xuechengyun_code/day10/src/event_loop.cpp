@@ -24,8 +24,6 @@ void EventLoop::loop() {
     }
 }
 
-#include <iostream>
-
 void EventLoop::update_channel(Channel* channel) {
     ep->update_channel(channel);
 }
