@@ -25,8 +25,7 @@ void EventLoop::loop() {
 void EventLoop::update_channel(Channel* channel) {
     ep->update_channel(channel);
 }
-
 void EventLoop::add_task(ThreadPool::Task task) {
-    thread_pool_.add(task);
+    thread_pool_.add(std::move(task));
 }
 
