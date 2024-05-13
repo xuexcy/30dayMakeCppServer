@@ -1,0 +1,19 @@
+#include "channel.h"
+#include "event_loop.h"
+#include "Socket.h"
+
+class Connection {
+public:
+    Connection(EventLoop* loop, Socket* client_sock);
+    ~Connection();
+    void set_delete_connection_callback(Socket::Callback);
+
+private:
+    void echo();
+
+private:
+    EventLoop* loop_;
+    Socket* sock_;
+    Channel* channel_;
+    Socket::Callback delete_connection_callback_;
+};
