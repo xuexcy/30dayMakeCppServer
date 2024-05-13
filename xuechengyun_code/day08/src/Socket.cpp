@@ -43,7 +43,6 @@ void Socket::listen() {
 void Socket::setnonblocking() {
     fcntl(fd, F_SETFL, fcntl(fd, F_GETFL) | O_NONBLOCK);
 }
-#include <iostream>
 
 int Socket::accept(InetAddress* addr) {
     int client_sockfd = ::accept(fd, (sockaddr*)&addr->addr, &addr->addr_len);

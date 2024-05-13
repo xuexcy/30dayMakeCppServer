@@ -8,9 +8,12 @@
 
 static const uint32_t READ_BUFFER = 1024;
 
-Connection::Connection(EventLoop* loop, Socket* client_sock):
-        loop_(loop), sock_(client_sock) {
-    channel_ = new Channel(loop, client_sock->get_fd());
+Connection::Connection(EventLoop* loop, int client_sockfd):
+        loop_(loop) {
+    sock_ = new Socket(client_sockfd);
+    sock_->setnonblocking();
+
+    channel_ = new Channel(loop, client_sockfd);
     Channel::Callback cb = std::bind(&Connection::echo, this);
     channel_->set_callback(cb);
     channel_->enable_reading();

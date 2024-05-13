@@ -4,7 +4,7 @@
 
 class Connection {
 public:
-    Connection(EventLoop* loop, Socket* client_sock);
+    Connection(EventLoop* loop, int client_sockfd);
     ~Connection();
     void set_delete_connection_callback(Socket::Callback);
 
